@@ -1,28 +1,23 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Integer, String, ForeignKey
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-
-class Base(DeclarativeBase):
-    pass
-
-db = SQLAlchemy(model_class=Base)
+from config_app import db
 
 class User(db.Model):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    username: Mapped[str] = mapped_column(String(20), nullable=False)
-    email: Mapped[str] = mapped_column(String(20), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), nullable=False)
+    email = db.Column(db.String(20), nullable=False)
 
 class Comments(db.Model):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    content: Mapped[str] = mapped_column(String(1000), nullable=False)
-    author: Mapped[int] = mapped_column(ForeignKey("user.id"))
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String(1000), nullable=False)
+    author = db.Column(db.ForeignKey("user.id"))
+    forum_id = db.Column(db.ForeignKey("discussion.id"))
 
 class Topic(db.Model):
-    name: Mapped[str] = mapped_column(String(20), primary_key=True, nullable=False)
+    name = db.Column(db.String(20), primary_key=True, nullable=False)
 
 class Discussion(db.Model):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    topic: Mapped[str] = mapped_column(ForeignKey("topic.name"))
-    title: Mapped[str] = mapped_column(String(40), nullable=False)
-    answer: Mapped[int] = mapped_column(ForeignKey("comments.id"))
-    author: Mapped[int] = mapped_column(ForeignKey("user.id"))
+    id = db.Column(db.Integer, primary_key=True)
+    topic = db.Column(db.String(20), db.ForeignKey("topic.name"))
+    title = db.Column(db.String(40), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
+    answer = db.relationship('Comments', backref='answer')
+    author = db.Column(db.ForeignKey("user.id"))

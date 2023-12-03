@@ -1,8 +1,9 @@
-from config_app import db
+from utils.config_app import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False)
+    password = db.Column(db.String(1000), nullable=False)
     email = db.Column(db.String(20), nullable=False)
 
 class Comments(db.Model):

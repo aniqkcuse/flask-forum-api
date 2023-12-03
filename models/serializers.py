@@ -1,5 +1,5 @@
-from config_app import ma
-from models import User, Comments, Topic, Discussion
+from utils.config_app import ma
+from .models import User, Comments, Topic, Discussion
 
 class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:

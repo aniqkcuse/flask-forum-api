@@ -1,4 +1,4 @@
-from config_app import api, app
+from utils.config_app import api, app, db
 from api import user, topic, discussion, comment
 
 api.add_resource(user.UserGeneralData, "/api/v1/user/")
@@ -11,4 +11,6 @@ api.add_resource(comment.CommentGeneralData, "/api/v1/comment/")
 api.add_resource(comment.CommentData, "/api/v1/comment/<int:pk>/")
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

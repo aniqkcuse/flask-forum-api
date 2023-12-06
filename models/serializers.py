@@ -8,11 +8,14 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 class CommentsSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Comments
+        include_fk = True
 
 class TopicSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Topic
+        include_fk = True
 
 class DiscussionSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Discussion
+        include_fk = True

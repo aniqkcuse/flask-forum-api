@@ -10,5 +10,7 @@ args = parser.parse_args()
 with app.app_context():
     if args.config == "init":
         db.create_all()
+        print("init")
     elif args.config == "destroy":
-        db.destroy()
+        db.drop_all()
+        print("drop")

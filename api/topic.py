@@ -19,11 +19,12 @@ class TopicGeneralData(Resource):
     def post(self):
         args = topic_parser.parse_args()
         identity = get_jwt_identity()
+        print(identity)
         author = db.session.get(User, identity)
         topic = Topic(name=args["name"], author=author.id)
         db.session.add(topic)
         db.session.commit()
-        return {"msg":"Post created"}
+        return {"msg":"Topic created"}
 
 class TopicData(Resource):
     @jwt_required()
@@ -42,7 +43,7 @@ class TopicData(Resource):
             topic.name = args["name"]
             db.session.add(topic)
             db.session.commit()
-            return {"msg":"Post updated"}
+            return {"msg":"Topic updated"}
         else:
             return {"error":"Can't update topic created by another user"}, 401
 
@@ -52,6 +53,6 @@ class TopicData(Resource):
         if topic.author == get_jwt_identity():
             db.session.delete(topic)
             db.session.commit()
-            return {"msg":"Post deleted"}
+            return {"msg":"Topic deleted"}
         else:
             return {"error","Can't delete topic created by another user"}, 401

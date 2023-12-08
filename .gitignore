@@ -1,3 +1,5 @@
 __pycache__/*.pyc
 .env
 */__pycache__/*.pyc
+__pycache__/*.cpython-311.pyc
+*/__pycache_/*.cpython-311.pyc

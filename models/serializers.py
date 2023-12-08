@@ -1,5 +1,5 @@
 from utils.config_app import ma
-from .models import User, Comments, Topic, Discussion
+from .models import User, Comments, Topic, Discussion, TokenBlocklist
 
 class UserSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
@@ -18,4 +18,9 @@ class TopicSchema(ma.SQLAlchemyAutoSchema):
 class DiscussionSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = Discussion
+        include_fk = True
+
+class TokenBlocklistSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = TokenBlocklist
         include_fk = True

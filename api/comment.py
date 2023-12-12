@@ -25,7 +25,7 @@ class CommentGeneralData(Resource):
         comment = Comments(content=args["content"], author=author.id, forum_id=forum_id.id)
         db.session.add(comment)
         db.session.commit()
-        return {"msg":"Comment created"}
+        return {"msg":"Comment created", "comment": {"id":comment.id, "content":comment.content, 'forum_id':comment.forum_id}}
     
 class CommentData(Resource):
     @jwt_required()
@@ -44,7 +44,7 @@ class CommentData(Resource):
             comment.content = args["content"]
             db.session.add(comment)
             db.session.commit()
-            return {"msg":"Comment update"}
+            return {"msg":"Comment update", "comment": {"id": comment.id, "content": comment.content, "forum_id": comment.forum_id}}
         else:
             return {"error":"Can't update comment of another user"}, 401
 

@@ -25,7 +25,7 @@ class DiscussionGeneralData(Resource):
         discussion = Discussion(topic=topic.id, title=args["title"], description=args["description"], author=author.id)
         db.session.add(discussion)
         db.session.commit()
-        return {"msg":"Discussion created"}
+        return {"msg":"Discussion created", "discussion": {"id":discussion.id, "topic":topic.id, "title":discussion.title, "description":discussion.description}}
 
 class DiscussionData(Resource):
     @jwt_required()
@@ -45,7 +45,7 @@ class DiscussionData(Resource):
             discussion.description = args["description"]
             db.session.add(discussion)
             db.session.commit()
-            return {"msg":"Discussion updated"}
+            return {"msg":"Discussion updated", "discussion": {"id": discussion.id, "topic": discussion.topic, "title": discussion.title, "description":discussion.title}}
         else:
             return {"error":"Can't update discussion for another user"}, 401
 

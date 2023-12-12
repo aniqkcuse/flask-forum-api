@@ -27,7 +27,7 @@ class UserGeneralData(Resource):
         db.session.commit()
         access_token = create_access_token(identity=user.id, fresh=True)
         refresh_token = create_refresh_token(identity=user.id)
-        return {"msg":"User created", "access_token":access_token, "refresh_token":refresh_token}
+        return {"msg":"User created", "access_token":access_token, "refresh_token":refresh_token, "user": {"id":user.id, "username":user.username, "email":user.email}}
 
 class UserData(Resource):
     @jwt_required()
@@ -48,7 +48,7 @@ class UserData(Resource):
             user.email = args["email"]
             db.session.add(user)
             db.session.commit()
-            return {"msg":"User updated"}
+            return {"msg":"User updated", "user": {"username":user.username, "email":user.email}}
         else:
             return {"error":"Can't update another user"}, 401
 

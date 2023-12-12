@@ -19,12 +19,11 @@ class TopicGeneralData(Resource):
     def post(self):
         args = topic_parser.parse_args()
         identity = get_jwt_identity()
-        print(identity)
         author = db.session.get(User, identity)
         topic = Topic(name=args["name"], author=author.id)
         db.session.add(topic)
         db.session.commit()
-        return {"msg":"Topic created"}
+        return {"msg":"Topic created", "topic":{"id": topic.id, "name":topic.name, "author":author.id}}
 
 class TopicData(Resource):
     @jwt_required()
@@ -43,7 +42,7 @@ class TopicData(Resource):
             topic.name = args["name"]
             db.session.add(topic)
             db.session.commit()
-            return {"msg":"Topic updated"}
+            return {"msg":"Topic updated", "topic": {"id": topic.id, "name": topic.name, "author":topic.author}}
         else:
             return {"error":"Can't update topic created by another user"}, 401
 

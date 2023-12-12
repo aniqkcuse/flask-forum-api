@@ -38,7 +38,7 @@ class Authentication(Resource):
         now = datetime.now(timezone.utc)
         db.session.add(TokenBlocklist(jti=jti, type=ttype, user_id=get_jwt_identity(), created_at=now.isoformat()))
         db.session.commit()
-        return {"message":"JWT revoked"}
+        return {"msg":"JWT Revoked"}
 
 class Refresh(Resource):
     @jwt_required(refresh=True)

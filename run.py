@@ -1,6 +1,7 @@
 from app.config_app import api, app
 from api import user, topic, discussion, comment, auth
-from flask import render_template
+from doc import doc
+import yaml
 
 # Creation of different endpoint to the crud.
 api.add_resource(user.UserGeneralData, "/api/v1/user/")
@@ -14,10 +15,12 @@ api.add_resource(comment.CommentData, "/api/v1/comment/<int:pk>/")
 api.add_resource(auth.Authentication, "/api/v1/auth/")
 api.add_resource(auth.Refresh, "/api/v1/refresh/")
 
-#Documentation of api
-@app.route("/api/v1/doc/")
-def documentation():
-    return render_template('index.html')
+app.register_blueprint(doc.swagger_blueprint)
+
+@app.route("/api/v1/swagger.yaml")
+def swagger_yaml():
+    with open('doc/openapi.yaml', 'r') as f:
+        return yaml.load(f, Loader=yaml.FullLoader)
 
 if __name__ == "__main__":
     app.run(debug=True)

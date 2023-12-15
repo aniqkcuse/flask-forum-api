@@ -1,7 +1,6 @@
-from sqlalchemy.orm import identity
 from models.serializers import UserSchema
 from flask_restful import reqparse, Resource
-from utils.config_app import db
+from app.config_app import db
 from models.models import User
 from passlib.hash import scrypt
 from flask_jwt_extended import jwt_required, create_access_token, create_refresh_token, get_jwt_identity

@@ -1,7 +1,7 @@
 from models.serializers import CommentsSchema
 from flask_restful import Resource, reqparse
 from models.models import Comments, User, Discussion
-from utils.config_app import db
+from app.config_app import db
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 comment_schema = CommentsSchema()

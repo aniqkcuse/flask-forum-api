@@ -11,7 +11,7 @@ from datetime import timedelta
 
 dotenv.load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, root_path="../forum-flask/")
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = os.environ.get('JWT_SECRET_KEY')

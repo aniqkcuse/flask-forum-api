@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import get_jwt, jwt_required, get_jwt_identity, create_access_token, create_refresh_token
 from models.models import TokenBlocklist, User
-from utils.config_app import db, jwt
+from app.config_app import db, jwt
 from passlib.hash import scrypt
 
 args_parser = reqparse.RequestParser()
@@ -24,8 +24,8 @@ class Authentication(Resource):
         user = User.query.filter_by(username=args["username"]).first()
         if (scrypt.verify(args["password"], user.password)):
             access_token = create_access_token(identity=user.id)
-            refrest_token = create_refresh_token(identity=user.id)
-            return {"access_token":access_token, "refrest_token":refrest_token}
+            refresh_token = create_refresh_token(identity=user.id)
+            return {"access_token":access_token, "refrest_token":refresh_token}
         else:
             return {"error": "Incorrect username or password"}, 401
     

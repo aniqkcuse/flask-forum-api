@@ -2,7 +2,7 @@ from models.serializers import TopicSchema
 from flask_restful import Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from models.models import Topic, User
-from utils.config_app import db
+from app.config_app import db
 
 topic_schema = TopicSchema()
 

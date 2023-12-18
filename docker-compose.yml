@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: gunicorn -w 4 -b 0.0.0.0:8000 "run:app"
+    volumes:
+      - static_volume:/home/app/web/static
+    expose:
+      - 8000
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+  
+  db:
+    image: mysql:8.2.0
+    volumes:
+      - mysql_data:/var/lib/mysql/
+    env_file:
+      - ./.env
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/home/app/web/static
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+
+volumes:
+  mysql_data:
+  static_volume:

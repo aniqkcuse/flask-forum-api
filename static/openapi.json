@@ -1,0 +1,1588 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Flask Forum",
+    "description": "This is a basic api rest to do a crud in a forum model. I divide this in: User, Topic, Discussion, Comment.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "User"
+    },
+    {
+      "name": "Authentication"
+    },
+    {
+      "name": "Topic"
+    },
+    {
+      "name": "Discussion"
+    },
+    {
+      "name": "Comment"
+    }
+  ],
+  "paths": {
+    "/api/v1/user/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:33:42 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "186"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "username": "username"
+                  },
+                  {
+                    "id": 2,
+                    "username": "example1"
+                  },
+                  {
+                    "id": 3,
+                    "username": "example1"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "username": "example1",
+                  "password": "password",
+                  "email": "mail@example.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:33:06 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "708"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "User created",
+                  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNzAyNTY0Mzg2LCJqdGkiOiJhZmZlMWZkMC1kNTAwLTRiMzctOGIwNy00NTczN2JkNjQ0NjkiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjozLCJuYmYiOjE3MDI1NjQzODYsImV4cCI6MTcwMzE2OTE4Nn0.MYhHg52Gwx6SoyEEDTb3dYTNtmUrAuW2e52saJDqnvY",
+                  "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMjU2NDM4NiwianRpIjoiMzAyNTRmNDgtMWNkNS00MzkyLTljZmMtYjBhOTViMjYwNzY4IiwidHlwZSI6InJlZnJlc2giLCJzdWIiOjMsIm5iZiI6MTcwMjU2NDM4NiwiZXhwIjoxNzA1MTU2Mzg2fQ.a8BoaAxgu0_DXDh7Z7_ojspPQ8nqs0IhW-xrLVNdpVI",
+                  "user": {
+                    "id": 3,
+                    "username": "example1",
+                    "email": "mail@example.com"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/3/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get one user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:34:38 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "185"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "id": 3,
+                  "username": "example1",
+                  "password": "$scrypt$ln=16,r=8,p=1$G8PYu5dyrnWutRbCuHcOoQ$RkCgQ1mrd1m7S4qAM95JuvpGbdd+UReSFXSSZPQQYYU",
+                  "email": "mail@example.com"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "username": "example1_update",
+                  "password": "password_update",
+                  "email": "update@mail.com"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:35:10 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "125"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "User updated",
+                  "user": {
+                    "username": "example1_update",
+                    "email": "update@mail.com"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete user",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:35:37 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "30"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "User deleted"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "username": "example1",
+                  "password": "password"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:36:25 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "576"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMjU2NDU4NSwianRpIjoiYmYxNGUxNTEtOWM2OC00MjY1LTgyMWUtYWE4ZDJhYWJhZjI5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNzAyNTY0NTg1LCJleHAiOjE3MDMxNjkzODV9.LZEJCU4WggftP5BFnlQkkTqxZ-vvKH79cn30WrxIsnA",
+                  "refrest_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMjU2NDU4NSwianRpIjoiZjBhYmVjNjQtNWNhYS00ZDdjLTk1YTktNTRkZTBlYzQ5NzZkIiwidHlwZSI6InJlZnJlc2giLCJzdWIiOjIsIm5iZiI6MTcwMjU2NDU4NSwiZXhwIjoxNzA1MTU2NTg1fQ.jjH_-EQwJIBiIk6691H_XQkfuIhMKkxT_I5T20t9GM4"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:11:30 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "29"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "JWT Revoked"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/refresh/": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Refresh",
+        "requestBody": {
+          "content": {}
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:37:19 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "288"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTcwMjU2NDYzOSwianRpIjoiYzlkZmNhMzctYTdkZC00Y2FlLWIwMTYtMTA5NGUwODgyZTQ1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNzAyNTY0NjM5LCJleHAiOjE3MDMxNjk0Mzl9.9ORDAs-3Oe8OdY3Jl-7qiJxZ3ceRTpwE581cAx-9_sE"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/topic/": {
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Get all topic",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Fri, 08 Dec 2023 13:03:14 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "58"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "name": "topic1"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Create topic",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "topic1"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:37:59 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "116"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "Topic created",
+                  "topic": {
+                    "id": 1,
+                    "name": "topic1",
+                    "author": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/topic/1/": {
+      "get": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Get one topic",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:39:07 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "55"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "id": 1,
+                  "name": "topic1",
+                  "author": 2
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Update topic",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "Topic1 Updated"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:39:49 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "124"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "Topic updated",
+                  "topic": {
+                    "id": 1,
+                    "name": "Topic1 Updated",
+                    "author": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Topic"
+        ],
+        "summary": "Delete topic",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 14:40:20 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "31"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "Topic deleted"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/discussion/": {
+      "get": {
+        "tags": [
+          "Discussion"
+        ],
+        "summary": "Get all discussion",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:04:26 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "59"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "title": "title1"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Discussion"
+        ],
+        "summary": "Create discussion",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "topic": "topic1",
+                  "title": "title1",
+                  "description": "description1"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:04:02 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "165"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "Discussion created",
+                  "discussion": {
+                    "id": 1,
+                    "topic": 2,
+                    "title": "title1",
+                    "description": "description1"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/discussion/1/": {
+      "get": {
+        "tags": [
+          "Discussion"
+        ],
+        "summary": "Get one discussion",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:04:54 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "127"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "id": 1,
+                  "topic": 2,
+                  "author": 2,
+                  "title": "title1",
+                  "description": "description1",
+                  "comments": []
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Discussion"
+        ],
+        "summary": "Update Topic",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "topic": "topic1",
+                  "title": "title1_update",
+                  "description": "description1_update"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:05:22 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "173"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "Discussion updated",
+                  "discussion": {
+                    "id": 1,
+                    "topic": 2,
+                    "title": "title1_update",
+                    "description": "title1_update"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Discussion"
+        ],
+        "summary": "Delete discussion",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:06:02 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "36"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "Discussion deleted"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/comment/": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Get all discussion",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:09:26 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "63"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "content": "content1"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Create comment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "content": "content1",
+                  "forum_id": 2
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:08:31 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "127"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "Comment created",
+                  "comment": {
+                    "id": 1,
+                    "content": "content1",
+                    "forum_id": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/comment/1/": {
+      "get": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Get one comment",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:10:19 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "79"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "id": 1,
+                  "content": "content1",
+                  "author": 2,
+                  "forum_id": 2
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Update comment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "content": "content1_update",
+                  "forum_id": 2
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:10:43 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "133"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "Comment update",
+                  "comment": {
+                    "id": 1,
+                    "content": "content1_update",
+                    "forum_id": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Delete comment",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "number",
+                  "example": "Werkzeug/3.0.1 Python/3.11.5"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 14 Dec 2023 15:11:10 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer",
+                  "example": "33"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "close"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "msg": "Comment deleted"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,11 @@
 from app.config_app import api, app
 from api import user, topic, discussion, comment, auth
 from doc import doc
-import yaml
+import dotenv
+import os
+from flask import redirect
+
+dotenv.load_dotenv()
 
 # Creation of different endpoint to the crud.
 api.add_resource(user.UserGeneralData, "/api/v1/user/")
@@ -17,10 +21,9 @@ api.add_resource(auth.Refresh, "/api/v1/refresh/")
 
 app.register_blueprint(doc.swagger_blueprint)
 
-@app.route("/api/v1/swagger.yaml")
-def swagger_yaml():
-    with open('doc/openapi.yaml', 'r') as f:
-        return yaml.load(f, Loader=yaml.FullLoader)
+@app.route("/")
+def redirect_doc():
+    return redirect('api/v1/docs/')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug= True if os.environ.get("DEBUG") == 1 else False)
